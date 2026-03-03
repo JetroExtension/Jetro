@@ -1,0 +1,188 @@
+{
+  "name": "jetro",
+  "displayName": "Jetro",
+  "description": "Give your AI coding agent an infinite visual workspace",
+  "version": "0.0.5",
+  "license": "MIT",
+  "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#0a0a0f",
+    "theme": "dark"
+  },
+  "keywords": [
+    "canvas",
+    "visual",
+    "workspace",
+    "AI",
+    "agent",
+    "data",
+    "visualization",
+    "dashboard",
+    "MCP",
+    "research"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Data Science",
+    "Visualization",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "jetro",
+          "title": "Jetro",
+          "icon": "assets/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "jetro": [
+        {
+          "type": "webview",
+          "id": "jetro.sidebar",
+          "name": "Jetro"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "jetro.openCompanion",
+        "title": "Jetro: Open in Companion (Browser)"
+      },
+      {
+        "command": "jetro.openCompanionCanvas",
+        "title": "Jetro: Open Canvas in Web App"
+      },
+      {
+        "command": "jetro.openCanvas",
+        "title": "Jetro: Open Research Board"
+      },
+      {
+        "command": "jetro.openSettings",
+        "title": "Jetro: Open Settings"
+      },
+      {
+        "command": "jetro.importPortfolio",
+        "title": "Jetro: Import Portfolio (CSV/XLSX)"
+      },
+      {
+        "command": "jetro.seedMockData",
+        "title": "Jetro: Seed Mock Data"
+      },
+      {
+        "command": "jetro.openConnector",
+        "title": "Jetro: Open Data Connector"
+      },
+      {
+        "command": "jetro.importDataset",
+        "title": "Jetro: Import Dataset (CSV/Excel/Parquet/JSON)"
+      },
+      {
+        "command": "jetro.importProjectData",
+        "title": "Jetro: Import Data into Project"
+      },
+      {
+        "command": "jetro.publishDashboard",
+        "title": "Jetro: Publish Canvas as Dashboard"
+      },
+      {
+        "command": "jetro.activateProject",
+        "title": "Jetro: Activate Project (Register DuckDB datasets)"
+      },
+      {
+        "command": "jetro.refreshMonitor",
+        "title": "Jetro: Refresh Monitor"
+      },
+      {
+        "command": "jetro.reinitializeMcp",
+        "title": "Jetro: Reinitialize MCP Server"
+      }
+    ],
+    "configuration": {
+      "title": "Jetro",
+      "properties": {
+        "jetro.apiUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Jetro API URL (leave empty for default)"
+        },
+        "jetro.mode": {
+          "type": "string",
+          "enum": [
+            "finance",
+            "general"
+          ],
+          "default": "finance",
+          "description": "Jetro mode: Finance (equity research) or General (BI / data analysis)"
+        },
+        "jetro.homeExchange": {
+          "type": "string",
+          "enum": [
+            "NSE",
+            "BSE",
+            "NYSE",
+            "NASDAQ",
+            "LSE",
+            "TSE",
+            "HKEX"
+          ],
+          "default": "NSE",
+          "description": "Home stock exchange for market status display"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "watch:ext": "node esbuild.extension.mjs --watch",
+    "build:ext": "node esbuild.extension.mjs",
+    "build:webview": "node esbuild.webview.mjs",
+    "build:daemon": "esbuild src/daemon/index.ts --bundle --platform=node --target=node18 --outfile=dist/daemon.js --external:fsevents",
+    "build:mcp": "cd ../mcp-server && node esbuild.mcp.mjs && cd ../extension && mkdir -p mcp-server/out && cp ../mcp-server/out/index.js mcp-server/out/index.js",
+    "build": "npm run compile && npm run build:webview",
+    "package": "npm run build:ext && npm run build:webview && npm run build:daemon && npm run build:mcp",
+    "lint": "eslint src --ext ts,tsx",
+    "postinstall": "chmod +x node_modules/node-pty/prebuilds/darwin-arm64/spawn-helper 2>/dev/null; true"
+  },
+  "devDependencies": {
+    "@observablehq/plot": "^0.6.17",
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/uuid": "^9.0.0",
+    "@types/vscode": "^1.85.0",
+    "@types/ws": "^8.18.1",
+    "@vscode/vsce": "^3.7.1",
+    "@xyflow/react": "^12.0.0",
+    "cesium": "^1.139.1",
+    "d3": "^7.9.0",
+    "esbuild": "^0.20.0",
+    "eslint": "^8.56.0",
+    "ovsx": "^0.10.10",
+    "plotly.js-dist-min": "^3.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.183.2",
+    "typescript": "^5.3.0",
+    "uuid": "^9.0.0",
+    "ws": "^8.20.0",
+    "xlsx": "^0.18.5"
+  },
+  "dependencies": {
+    "@duckdb/node-api": "^1.5.1-r.1",
+    "@duckdb/node-bindings-darwin-x64": "^1.5.1-r.1",
+    "@duckdb/node-bindings-linux-x64": "^1.5.1-r.1",
+    "@duckdb/node-bindings-win32-x64": "^1.5.1-r.1",
+    "node-pty": "^1.0.0"
+  }
+}

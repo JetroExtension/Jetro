@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+extension/out/
+extension/dist/
+extension/webview/
+extension/companion-dist/
+mcp-server/out/
+
+# VSIX packages
+*.vsix
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Generated workspace files (created by extension at runtime)
+CLAUDE.md
+AGENT.md
+.windsurfrules
+.mcp.json
+.jetro/
+.cursor/
+.agents/
+.github/copilot-instructions.md
+
+# Backup files
+*.bak
+node_modules_full/

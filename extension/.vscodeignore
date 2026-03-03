@@ -1,0 +1,85 @@
+# ── Source code (bundled into out/extension.js by esbuild) ──
+src/**
+tsconfig.json
+esbuild.extension.mjs
+esbuild.webview.mjs
+.eslintrc*
+
+# ── Compiled output we don't need (esbuild replaces tsc) ──
+out/**/*.js.map
+out/**/*.d.ts
+out/canvas/**
+out/connector/**
+out/daemon/**
+out/manifests/**
+out/panels/**
+out/settings/**
+out/sidebar/**
+out/slug-words.*
+out/statusbar/**
+out/tools/**
+out/types/**
+# Keep: out/extension.js, out/services/pty-server.js
+
+# ── DuckDB native binary (lazy-downloaded on first launch) ──
+node_modules/duckdb/lib/binding/*.node
+node_modules/duckdb/src/**
+node_modules/duckdb/test/**
+node_modules/duckdb/binding.gyp
+node_modules/duckdb/deps/**
+node_modules/duckdb/build/**
+
+# ── node-pty build artifacts (only prebuilds/ needed) ──
+node_modules/node-pty/src/**
+node_modules/node-pty/deps/**
+node_modules/node-pty/scripts/**
+node_modules/node-pty/third_party/**
+node_modules/node-pty/binding.gyp
+node_modules/node-pty/build/**
+node_modules/node-pty/typings/**
+
+# ── node-pre-gyp build tools (keep only runtime) ──
+node_modules/@mapbox/node-pre-gyp/bin/**
+node_modules/@mapbox/node-pre-gyp/lib/build.js
+node_modules/@mapbox/node-pre-gyp/lib/clean.js
+node_modules/@mapbox/node-pre-gyp/lib/configure.js
+node_modules/@mapbox/node-pre-gyp/lib/install.js
+node_modules/@mapbox/node-pre-gyp/lib/package.js
+node_modules/@mapbox/node-pre-gyp/lib/publish.js
+node_modules/@mapbox/node-pre-gyp/lib/rebuild.js
+node_modules/@mapbox/node-pre-gyp/lib/reinstall.js
+node_modules/@mapbox/node-pre-gyp/lib/testbinary.js
+node_modules/@mapbox/node-pre-gyp/lib/testpackage.js
+node_modules/@mapbox/node-pre-gyp/lib/unpublish.js
+node_modules/@mapbox/node-pre-gyp/lib/reveal.js
+node_modules/@mapbox/node-pre-gyp/lib/mock/**
+
+# ── OS files ──
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# ── Git ──
+.git/**
+.gitignore
+
+# ── Markdown (except README, LICENSE, and bundled docs) ──
+**/*.md
+!README.md
+!LICENSE
+!agent/docs/reference.md
+
+# ── Build scripts (not needed at runtime) ──
+scripts/**
+esbuild.extension.mjs
+esbuild.webview.mjs
+
+# ── Backup node_modules (created during build) ──
+node_modules_full/**
+
+# ── Misc ──
+*.vsix
+**/.npmrc
+**/package-lock.json
+node_modules/.package-lock.json
+.vscode/**

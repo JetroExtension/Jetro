@@ -1,0 +1,357 @@
+:root {
+  --bg: var(--vscode-editor-background, #1e1e1e);
+  --card-bg: var(--vscode-sideBar-background, #181818);
+  --border: var(--vscode-panel-border, #2d2d2d);
+  --fg: var(--vscode-foreground, #cccccc);
+  --fg-dim: var(--vscode-descriptionForeground, #858585);
+  --input-bg: var(--vscode-input-background, #2a2a2a);
+  --input-border: var(--vscode-input-border, #3c3c3c);
+  --input-fg: var(--vscode-input-foreground, #cccccc);
+  --accent: #DEBFCA;
+  --success: #3fb950;
+  --error: #f85149;
+  --blue: #4dabf7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.connector-app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* ── Scope badge ── */
+.scope-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #000;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+}
+
+/* ── Typography ── */
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: var(--fg-dim);
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+/* ── Catalog Grid ── */
+.connector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+.connector-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid;
+  border-radius: 4px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.connector-card:hover {
+  background: var(--input-bg);
+  border-color: var(--fg-dim);
+}
+
+.connector-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+}
+
+.connector-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.connector-info strong {
+  font-size: 13px;
+}
+
+.connector-desc {
+  font-size: 11px;
+  color: var(--fg-dim);
+}
+
+/* ── Config Form ── */
+.config-form {
+  max-width: 480px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+.field-row {
+  margin-bottom: 14px;
+}
+
+.field-row label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--fg);
+}
+
+.required {
+  color: var(--error);
+  margin-left: 2px;
+}
+
+.field-row input,
+.field-row select {
+  width: 100%;
+  padding: 7px 10px;
+  background: var(--input-bg);
+  color: var(--input-fg);
+  border: 1px solid var(--input-border);
+  border-radius: 3px;
+  font-size: 13px;
+  font-family: "JetBrains Mono", monospace;
+  outline: none;
+}
+
+.field-row input:focus,
+.field-row select:focus {
+  border-color: var(--accent);
+}
+
+.file-input {
+  display: flex;
+  gap: 6px;
+}
+
+.file-input input {
+  flex: 1;
+  cursor: default;
+}
+
+.file-input button {
+  padding: 6px 12px;
+  background: var(--card-bg);
+  color: var(--fg);
+  border: 1px solid var(--input-border);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.file-input button:hover {
+  background: var(--input-bg);
+}
+
+.help-text {
+  display: block;
+  font-size: 11px;
+  color: var(--fg-dim);
+  margin-top: 3px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.test-btn,
+.save-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.test-btn {
+  background: var(--card-bg);
+  color: var(--fg);
+  border: 1px solid var(--input-border);
+}
+
+.save-btn {
+  background: var(--accent);
+  color: #000;
+}
+
+.test-btn:disabled,
+.save-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.test-result {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.test-result.success {
+  background: rgba(63, 185, 80, 0.12);
+  color: var(--success);
+  border: 1px solid rgba(63, 185, 80, 0.3);
+}
+
+.test-result.error {
+  background: rgba(248, 81, 73, 0.12);
+  color: var(--error);
+  border: 1px solid rgba(248, 81, 73, 0.3);
+}
+
+/* ── Schema Browser ── */
+.schema-browser {
+  max-width: 560px;
+}
+
+.loading, .empty {
+  padding: 20px;
+  text-align: center;
+  color: var(--fg-dim);
+  font-size: 12px;
+}
+
+.schema-tree {
+  margin-top: 8px;
+}
+
+.tree-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.1s;
+}
+
+.tree-row:hover {
+  background: var(--input-bg);
+}
+
+.arrow {
+  font-size: 10px;
+  width: 12px;
+  color: var(--fg-dim);
+}
+
+.schema-label {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.table-label {
+  font-size: 12px;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.count, .row-count {
+  font-size: 10px;
+  color: var(--fg-dim);
+  margin-left: auto;
+}
+
+.import-btn {
+  font-size: 10px;
+  padding: 2px 8px;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.import-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.schema-children {
+  padding-left: 16px;
+}
+
+.table-row {
+  padding-left: 4px;
+}
+
+.column-list {
+  padding-left: 32px;
+}
+
+.column-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.col-key {
+  width: 14px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.col-name {
+  color: var(--fg);
+}
+
+.col-type {
+  color: var(--fg-dim);
+  font-size: 10px;
+}
+
+.nullable {
+  font-size: 9px;
+  color: var(--fg-dim);
+  opacity: 0.5;
+  padding: 1px 4px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}

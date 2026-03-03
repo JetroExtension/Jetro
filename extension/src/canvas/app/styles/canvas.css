@@ -1,0 +1,248 @@
+/* Canvas webview global styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-color: rgba(222,191,202,0.2) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(222,191,202,0.2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(222,191,202,0.35); }
+::-webkit-scrollbar-thumb:active { background: rgba(222,191,202,0.5); }
+
+html, body, #canvas-root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #1a1a1a;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #cccccc;
+}
+
+/* React Flow overrides */
+.react-flow {
+  background: #1a1a1a !important;
+}
+
+.react-flow__node {
+  cursor: grab;
+  transition: box-shadow 0.2s ease;
+}
+
+.react-flow__node:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+/* Hand tool: grab cursor everywhere, nodes are non-interactive */
+.tool-hand .react-flow__pane { cursor: grab; }
+.tool-hand .react-flow__pane:active { cursor: grabbing; }
+.tool-hand .react-flow__node { cursor: grab; pointer-events: none; }
+.tool-hand .react-flow__edge { pointer-events: none; }
+
+/* Ensure node content fills the React Flow wrapper when resized */
+.react-flow__node > div {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.react-flow__node:active {
+  cursor: grabbing;
+}
+
+/* Selection style — gold glow */
+.react-flow__node.selected {
+  outline: none;
+}
+
+/* Edge styles */
+.react-flow__edge-path {
+  stroke: #404040;
+  stroke-dasharray: 5 5;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #DEBFCA;
+}
+
+/* Controls */
+.react-flow__controls {
+  display: none; /* Using custom CanvasToolbar instead */
+}
+
+/* Handle styles */
+.react-flow__handle {
+  width: 6px;
+  height: 6px;
+  background: #404040;
+  border: 1px solid #2b2b2b;
+}
+
+.react-flow__handle:hover {
+  background: #DEBFCA;
+  box-shadow: 0 0 6px rgba(222,191,202,0.3);
+}
+
+/* Node resize handles — show on hover/select */
+.react-flow__resize-control.handle {
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.react-flow__node:hover .react-flow__resize-control.handle,
+.react-flow__node.selected .react-flow__resize-control.handle {
+  opacity: 1;
+}
+
+/* HTML frame rendered content */
+.html-frame-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.html-frame-content th,
+.html-frame-content td {
+  padding: 4px 8px;
+  border-bottom: 1px solid #2b2b2b;
+  text-align: left;
+}
+
+.html-frame-content th {
+  font-size: 9px;
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-weight: 600;
+}
+
+.html-frame-content h1, .html-frame-content h2, .html-frame-content h3 {
+  color: #DEBFCA;
+  margin: 8px 0 4px 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.html-frame-content h1 { font-size: 16px; }
+.html-frame-content h2 { font-size: 14px; }
+.html-frame-content h3 { font-size: 12px; }
+
+.html-frame-content p {
+  margin: 4px 0;
+  color: #aaa;
+}
+
+.html-frame-content ul, .html-frame-content ol {
+  padding-left: 16px;
+  color: #aaa;
+}
+
+.html-frame-content a {
+  color: #58A6FF;
+}
+
+/* Refresh binding pulse animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* C2 mode — status badge pulse */
+@keyframes c2pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(222,191,202,0.4); }
+  50% { opacity: 0.5; box-shadow: 0 0 0 4px rgba(222,191,202,0); }
+}
+
+/* C2 mode — wire edge active animation (traveling dot) */
+@keyframes c2wire-flow {
+  0% { stroke-dashoffset: 20; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* C2 mode — edge styles */
+.react-flow__edge.c2-wire .react-flow__edge-path {
+  stroke: rgba(222,191,202,0.4);
+  stroke-width: 2;
+  stroke-dasharray: none;
+}
+
+.react-flow__edge.c2-wire.active .react-flow__edge-path {
+  stroke: #DEBFCA;
+  stroke-dasharray: 4 16;
+  animation: c2wire-flow 0.8s linear infinite;
+}
+
+.react-flow__edge.c2-wire.selected .react-flow__edge-path {
+  stroke: #DEBFCA;
+  stroke-width: 2.5;
+}
+
+/* C2 mode — enhanced handles */
+.c2-active .react-flow__handle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(222,191,202,0.3);
+  border: 1px solid rgba(222,191,202,0.5);
+  transition: all 0.15s;
+}
+
+.c2-active .react-flow__handle:hover {
+  background: #DEBFCA;
+  box-shadow: 0 0 8px rgba(222,191,202,0.4);
+}
+
+/* C2 mode — wire activity pulse (data flowing) */
+.react-flow__edge.c2-wire.wire-active .react-flow__edge-path {
+  stroke: #DEBFCA;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 4px rgba(222,191,202,0.5));
+}
+
+/* C2 mode — tactical theme */
+.c2-tactical {
+  --canvas-bg: #0a0a0c;
+}
+
+.c2-tactical .react-flow {
+  background: #0a0a0c !important;
+}
+
+.c2-tactical .react-flow__background {
+  background-image:
+    radial-gradient(circle, rgba(63,185,80,0.04) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+}
+
+.c2-tactical .react-flow__node {
+  border-color: rgba(63, 185, 80, 0.2) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Tactical wire channel colors */
+.c2-tactical .react-flow__edge.c2-wire[data-channel="data"] .react-flow__edge-path,
+.c2-tactical .react-flow__edge.c2-wire[data-channel="selection"] .react-flow__edge-path {
+  stroke: rgba(63, 185, 80, 0.5);
+}
+
+.c2-tactical .react-flow__edge.c2-wire[data-channel="command"] .react-flow__edge-path,
+.c2-tactical .react-flow__edge.c2-wire[data-channel="filter"] .react-flow__edge-path {
+  stroke: rgba(222, 191, 202, 0.5);
+}
+
+.c2-tactical .react-flow__edge.c2-wire[data-channel="alert"] .react-flow__edge-path,
+.c2-tactical .react-flow__edge.c2-wire[data-channel="error"] .react-flow__edge-path {
+  stroke: rgba(248, 81, 73, 0.5);
+}
+
+.c2-tactical .react-flow__handle {
+  background: rgba(63, 185, 80, 0.3) !important;
+  border-color: rgba(63, 185, 80, 0.5) !important;
+}
+
+.c2-tactical .react-flow__handle:hover {
+  background: #3fb950 !important;
+  box-shadow: 0 0 8px rgba(63, 185, 80, 0.4) !important;
+}
