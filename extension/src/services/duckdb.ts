@@ -572,3 +572,4 @@ export class DuckDBService {
     this.trackedS3 = null;
   }
 }
+// DuckDB NAPI stability
