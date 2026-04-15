@@ -2899,3 +2899,4 @@ async function handleJetConnector(args: {
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
+// MCP tool description improvements
