@@ -614,3 +614,4 @@ There's no direct canvas-to-image export. But individual frame elements can be o
 3. Ensure the HTML is a complete document with `<!DOCTYPE html>` and proper `<head>`/`<body>` tags
 4. If using chart libraries, ensure the CDN `<script>` tags load before your code that uses them
 5. Test with a minimal frame first to isolate the issue
+// Reference doc updates
