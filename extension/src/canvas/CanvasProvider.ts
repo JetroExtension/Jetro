@@ -1291,3 +1291,4 @@ export class CanvasProvider {
 </html>`;
   }
 }
+// Canvas layout engine optimizations
