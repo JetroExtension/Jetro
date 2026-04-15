@@ -6,6 +6,8 @@ Jetro is an open-source VS Code extension that adds a living canvas to your edit
 
 Your coding agent is powerful, but it's trapped in a text window. Jetro unlocks its full potential by giving it a visual layer to build on.
 
+**[jetro.ai](https://jetro.ai)** — Try the hosted version with built-in data, skills, and sharing. No setup required.
+
 ## Features
 
 - **Infinite Canvas** — draggable, resizable elements: frames, charts, notes, embeds
@@ -467,6 +469,13 @@ Replace `/path/to/your/test/folder` with any folder on your machine. The Extensi
 
 ---
 
+## Links
+
+- **[jetro.ai](https://jetro.ai)** — Hosted version with built-in data, skills, and sharing
+- **[Open VSX](https://open-vsx.org/extension/jetro-ai/jetro)** — Install from Open VSX marketplace
+- **[VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=jetro-ai.jetro)** — Install from Microsoft marketplace
+
 ## License
 
 MIT License. See [LICENSE](LICENSE) for details.
+
